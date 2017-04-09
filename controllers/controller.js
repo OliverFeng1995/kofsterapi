@@ -27,7 +27,14 @@ var findAllCafes = function(req,res){
 };
 
 var findOneCafe = function(req,res){
-    res.send(cafes[req.params.id]);
+    var cafeInx = req.params.id;
+    Cafe.findById(cafeInx,function(err,cafe){
+        if(!err){
+            res.send(cafe);
+        }else{
+            res.sendStatus(404);
+        }
+    });
 };
 
 module.exports.createCafe = createCafe;

@@ -11,14 +11,4 @@ mongoose.connect('mongodb://localhost/cafes',function(err){
     }
 });
 
-var cafeSchema = mongoose.Schema(
-    {
-        "name":String,
-        "address":String,
-        "distance":String,
-        "rating":String,
-        "photo":String
-    }
-);
-mongoose.model('Cafe',cafeSchema);
-
+require('./cafe.js');

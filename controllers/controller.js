@@ -5,15 +5,20 @@ var mongoose = require('mongoose');
 var Cafe = mongoose.model('Cafe');
 
 var createCafe = function(req,res){
-    var cafe = {
+    var cafe = new Cafe({
         "name":req.body.name,
         "address":req.body.address,
         "distance":req.body.distance,
         "rating":req.body.rating,
         "photo":req.body.photo
-    };
-    cafes.push(cafe);
-    res.send(cafe);
+    });
+    cafe.save(function(err,newCafe){
+        if(!err){
+            res.send(newCafe);
+        }else{
+            res.sendStatus(400);
+        }
+    });
 };
 
 var findAllCafes = function(req,res){

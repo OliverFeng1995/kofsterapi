@@ -7,80 +7,8 @@ var app = express();
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
-var cafes = [
-    {
-        "name":"Hipster Emporium",
-        "address":"Richmond",
-        "distance":"6.2 km",
-        "rating":"4.0",
-        "photo":"https://source.unsplash.com/O50HtSlCzag/"
-    },
-    {
-        "name":"Lumberjack Cafe",
-        "address":"Fitzroy",
-        "distance":"1.9 km",
-        "rating":"4.4",
-        "photo":"https://source.unsplash.com/QC1u9B333ys/350x233"
-    },
-    {
-        "name":"The Naked Barista",
-        "address":"Collingwood",
-        "distance":"2.7 km",
-        "rating":"4.3",
-        "photo":"https://source.unsplash.com/g-erOiuDxro/350x233"
-    },
-    {
-        "name":"The Coffee Cobbler",
-        "address":"Melbourne CBD",
-        "distance":"2.2 km",
-        "rating":"3.2",
-        "photo":"https://source.unsplash.com/BonjBu19IiY/350x233"
-    },
-    {
-        "name":"Kofsmanship",
-        "address":"Toorak",
-        "distance":"9.3 km",
-        "rating":"3.9",
-        "photo":"https://source.unsplash.com/xoBg77epln0/350x233"
-    },
-    {
-        "name":"Before it Becomes Cool",
-        "address":"Carlton",
-        "distance":"650 m",
-        "rating":"4.6",
-        "photo":"https://source.unsplash.com/94taEmdowRw/350x233"
-    },
-    {
-        "name":"Kawa",
-        "address":"Fitzroy",
-        "distance":"1.9 km",
-        "rating":"2.4",
-        "photo":"https://source.unsplash.com/4qJdtfJ2MmQ/350x233"
-    }
-];
-
-// Create new cafe
-app.post('/api',function(req,res){
-    var cafe = {
-        "name":req.body.name,
-        "address":req.body.address,
-        "distance":req.body.distance,
-        "rating":req.body.rating,
-        "photo":req.body.photo
-    };
-    cafes.push(cafe);
-    res.send(cafe);
-});
-
-// Find all cafes
-app.get('/api',function(req,res){
-    res.send(cafes);
-});
-
-// Find one cafe by id
-app.get('/api/:id',function(req,res){
-    res.send(cafes[req.params.id]);
-});
+var routes = require('./routes/routes.js');
+app.use('/',routes);
 
 // Start the server
 app.listen(3000,function(req,res){

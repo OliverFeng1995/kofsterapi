@@ -7,6 +7,16 @@ var app = express();
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
+// Create database
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/cafes',function(err){
+    if(!err){
+        console.log('Connected to mongo');
+    }else{
+        console.log('Failed to connect to mongo');
+    }
+});
+
 var routes = require('./routes/routes.js');
 app.use('/',routes);
 

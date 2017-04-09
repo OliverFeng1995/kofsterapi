@@ -5,8 +5,12 @@
 var express = require('express');
 var app = express();
 
-app.get('/',function(req,res){
-    res.send('Hello World');
+app.post('/api',function(req,res){
+    res.send('Received post')
+});
+
+app.get('/api',function(req,res){
+    res.send('Received get');
 });
 
 app.listen(3000,function(req,res){

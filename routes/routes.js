@@ -57,8 +57,7 @@ var cafes = [
     }
 ];
 
-// Create new cafe
-router.post('/api',function(req,res){
+var createCafe = function(req,res){
     var cafe = {
         "name":req.body.name,
         "address":req.body.address,
@@ -68,16 +67,23 @@ router.post('/api',function(req,res){
     };
     cafes.push(cafe);
     res.send(cafe);
-});
+};
+
+var findAllCafes = function(req,res){
+    res.send(cafes);
+};
+
+var findOneCafe = function(req,res){
+    res.send(cafes[req.params.id]);
+};
+
+// Create new cafe
+router.post('/api',createCafe);
 
 // Find all cafes
-router.get('/api',function(req,res){
-    res.send(cafes);
-});
+router.get('/api',findAllCafes);
 
 // Find one cafe by id
-router.get('/api/:id',function(req,res){
-    res.send(cafes[req.params.id]);
-});
+router.get('/api/:id',findOneCafe);
 
 module.exports = router;

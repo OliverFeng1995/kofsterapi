@@ -4,6 +4,8 @@
 // Set up express
 var express = require('express');
 var app = express();
+var bodyParser = require('body-parser');
+app.use(bodyParser.json());
 
 var cafes = [
     {
@@ -59,7 +61,15 @@ var cafes = [
 
 // Create new cafe
 app.post('/api',function(req,res){
-    res.send('Received post');
+    var cafe = {
+        "name":req.body.name,
+        "address":req.body.address,
+        "distance":req.body.distance,
+        "rating":req.body.rating,
+        "photo":req.body.photo
+    };
+    cafes.push(cafe);
+    res.send(cafe);
 });
 
 // Find all cafes

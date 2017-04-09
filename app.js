@@ -57,14 +57,22 @@ var cafes = [
     }
 ];
 
+// Create new cafe
 app.post('/api',function(req,res){
     res.send('Received post');
 });
 
+// Find all cafes
 app.get('/api',function(req,res){
     res.send(cafes);
 });
 
+// Find one cafe by id
+app.get('/api/:id',function(req,res){
+    res.send(cafes[req.params.id]);
+});
+
+// Start the server
 app.listen(3000,function(req,res){
    console.log('Express listening on port 3000');
 });

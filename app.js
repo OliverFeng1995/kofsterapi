@@ -7,8 +7,10 @@ var app = express();
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
+// Database setup
 require('./models/db.js');
 
+// Routes setup
 var routes = require('./routes/routes.js');
 app.use('/',routes);
 

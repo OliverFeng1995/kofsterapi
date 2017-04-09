@@ -10,3 +10,15 @@ mongoose.connect('mongodb://localhost/cafes',function(err){
         console.log('Failed to connect to mongo');
     }
 });
+
+var cafeSchema = mongoose.Schema(
+    {
+        "name":String,
+        "address":String,
+        "distance":String,
+        "rating":String,
+        "photo":String
+    }
+);
+mongoose.model('Cafe',cafeSchema);
+
